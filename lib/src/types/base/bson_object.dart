@@ -1,5 +1,8 @@
 // ignore_for_file: constant_identifier_names, deprecated_member_use_from_same_package
 
+import 'dart:typed_data';
+
+import 'package:bson/src/types/bson_uint8list.dart';
 import 'package:decimal/decimal.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:uuid/uuid.dart';
@@ -178,6 +181,11 @@ abstract class BsonObject {
     }
     if (value is String) {
       return BsonString(value);
+    }
+    // added for LapSmart
+    // Uint8List is List, so this test needs to be before List test
+    if (value is Uint8List) {
+      return BsonUint8List(value);
     }
     if (value is List) {
       return BsonArray(value, parms);

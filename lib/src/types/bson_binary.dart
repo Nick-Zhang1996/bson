@@ -347,6 +347,12 @@ class BsonBinary extends BsonObject {
     return byteArray.getFloat64(offset - 8, Endian.little);
   }
 
+  Uint8List readUint8List() {
+    final length = byteArray.getInt64(offset, Endian.little);
+    offset += 8;
+    return byteList.buffer.asUint8List(offset, length);
+  }
+
   String readCString() {
     var stringBytes = <int>[];
     while (byteList[offset++] != 0) {
