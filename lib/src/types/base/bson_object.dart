@@ -87,6 +87,9 @@ const bsonDataLong = 18;
 /// Decimal128 Type (0x13)
 const bsonDataDecimal128 = 19;
 
+/// Uint8List BSON Type
+const bsonUint8List = 20;
+
 /// The following types are implemented partially /
 //const _BSON_DATA_MIN_KEY = 0xff; // MinKey BSON Type
 //const _BSON_DATA_MAX_KEY = 0x7f; // MaxKey BSON Type
@@ -269,6 +272,8 @@ abstract class BsonObject {
         return BsonTimestamp.fromBuffer(buffer);
       case bsonDataDecimal128:
         return BsonDecimal128.fromBuffer(buffer);
+      case bsonUint8List:
+        return BsonUint8List.fromBuffer(buffer);
       default:
         throw Exception('Not implemented for BSON TYPE $typeByte');
     }

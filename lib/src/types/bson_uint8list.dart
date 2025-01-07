@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:fixnum/fixnum.dart';
 
-import '../utils/statics.dart';
-import '../utils/types_def.dart';
+//import '../utils/statics.dart';
+//import '../utils/types_def.dart';
 import 'base/bson_object.dart';
 import 'bson_binary.dart';
 
@@ -24,7 +24,7 @@ class BsonUint8List extends BsonObject {
   }
 
   Uint8List data;
-  int _totalByteLength;
+  final int _totalByteLength;
 
   static Uint8List extractData(BsonBinary buffer) => buffer.readUint8List();
 
@@ -33,7 +33,7 @@ class BsonUint8List extends BsonObject {
   @override
   int get totalByteLength => _totalByteLength;
   @override
-  int get typeByte => bsonDataNumber;
+  int get typeByte => bsonUint8List;
   @override
   void packValue(BsonBinary buffer) {
     /// first 8 bytes specify length as int64, rest are data

@@ -350,7 +350,8 @@ class BsonBinary extends BsonObject {
   Uint8List readUint8List() {
     final length = byteArray.getInt64(offset, Endian.little);
     offset += 8;
-    return byteList.buffer.asUint8List(offset, length);
+    offset += length;
+    return byteList.buffer.asUint8List(offset - length, length);
   }
 
   String readCString() {
