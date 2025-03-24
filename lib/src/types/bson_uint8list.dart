@@ -39,7 +39,7 @@ class BsonUint8List extends BsonObject {
     /// first 8 bytes specify length as int64, rest are data
     assert(data.length == data.lengthInBytes);
     buffer.writeFixInt64(Int64(data.length));
-    // FIXME we should use setRange for efficiency
+    // TODO we should use setRange for efficiency
     for (final val in data) {
       buffer.writeByte(val);
     }
